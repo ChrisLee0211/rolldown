@@ -1,0 +1,16 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/rollup/function/call-external-function
+---
+---------- main.js ----------
+import foo$1 from "foo";
+
+// foo.js
+var foo_ = foo$1;
+
+// main.js
+var foo = foo_;
+assert.equal(foo(), 42);
+---------- WARNINGS ----------
+UNRESOLVED_IMPORT: Could not resolve "foo" from "foo.js"

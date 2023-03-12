@@ -31,6 +31,10 @@ pub(crate) async fn resolve_id(
   // external modules (non-entry modules that start with neither '.' or '/')
   // are skipped at this stage.
   if importer.is_some() && !specifier.as_path().is_absolute() && !specifier.starts_with('.') {
+    let resolved = resolver.resolve(importer, specifier);
+    if let Ok(resolved) = resolved {
+      return Ok(Some(ModuleId::new(resolved, false)));
+    }
     return Ok(None);
   }
 

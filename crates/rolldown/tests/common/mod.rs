@@ -98,8 +98,18 @@ pub fn run_test(test_config_path: &Path) {
       .output
       .expect_err("Expected error but got success")
       .into_vec();
-    assert_eq!(errors.len(), 1);
-    let error = errors.into_iter().next().unwrap();
+
+    // TODO: should supports multiple errors
+    let error = errors
+      .iter()
+      .find(|error| {
+        error.kind.code() == expected_error.code
+          && error.kind.to_readable_string(&compiled_fx.fixture_path) == expected_error.message
+      })
+      .unwrap_or_else(|| {
+        eprintln!("errors: {errors:#?}");
+        panic!("should find the error");
+      });
     assert_eq!(error.kind.code(), expected_error.code);
     assert_eq!(
       error.kind.to_readable_string(&compiled_fx.fixture_path),

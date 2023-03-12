@@ -23,7 +23,7 @@ async fn main() {
     }],
     cwd: cwd.clone(),
     is_external: Arc::new(|specifier, _, _| {
-      let res = Ok(specifier == "@rolldown/node-binding");
+      let res = Ok(specifier == "@rolldown/node-binding" || specifier == "path");
       async { res }.boxed()
     }),
     ..Default::default()
@@ -51,7 +51,7 @@ async fn main() {
     }],
     cwd: cwd.clone(),
     is_external: Arc::new(|specifier, _, _| {
-      let res = Ok(specifier == "@rolldown/node-binding");
+      let res = Ok(specifier == "@rolldown/node-binding" || specifier == "path");
       async { res }.boxed()
     }),
     ..Default::default()

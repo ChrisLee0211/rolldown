@@ -27,8 +27,8 @@ use tracing::instrument;
 use super::Msg;
 use crate::{
   extract_loader_by_path, resolve_id, BuildError, BuildResult, IsExternal, ResolvedModuleIds,
-  SharedBuildInputOptions, SharedBuildPluginDriver, SharedResolver, UnaryBuildResult, COMPILER,
-  SWC_GLOBALS,
+  SharedBuildInputOptions, SharedBuildPluginDriver, SharedResolver, UnaryBuildResult,
+  WarningHandler, COMPILER, SWC_GLOBALS,
 };
 
 pub(crate) struct ModuleTask {
@@ -54,6 +54,7 @@ impl ModuleTask {
     specifier: &str,
     plugin_driver: &SharedBuildPluginDriver,
     is_external: &IsExternal,
+    on_warn: WarningHandler,
   ) -> UnaryBuildResult<ModuleId> {
     let is_marked_as_external = is_external(specifier, Some(importer.id()), false).await?;
 
@@ -72,7 +73,11 @@ impl ModuleTask {
         is_resolved_marked_as_external,
       ))
     } else {
-      // TODO: emit warnings like https://rollupjs.org/guide/en#warning-treating-module-as-external-dependency
+      // TODO: should emit warnings like https://rollupjs.org/guide/en#warning-treating-module-as-external-dependency
+      on_warn(rolldown_error::Error::unresolved_import(
+        specifier.to_string(),
+        importer.to_string(),
+      ));
       Ok(ModuleId::new(specifier, true))
     }
   }
@@ -104,7 +109,7 @@ impl ModuleTask {
       let plugin_driver = self.plugin_driver.clone();
       let importer = self.id.clone();
       let is_external = self.is_external.clone();
-
+      let on_warn = self.input_options.on_warn.clone();
       tokio::spawn(async move {
         Self::resolve_id(
           &resolver,
@@ -112,6 +117,7 @@ impl ModuleTask {
           &specifier,
           &plugin_driver,
           &is_external,
+          on_warn,
         )
         .await
         .map(|id| (specifier.clone(), id))

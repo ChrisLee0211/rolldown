@@ -1174,6 +1174,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "nodejs-resolver"
+version = "0.0.69"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b48f51fc2f907f6781d71de0abecf456877d26a17ed7b4fa263dd52b60c4e46"
+dependencies = [
+ "daachorse",
+ "dashmap",
+ "dunce",
+ "indexmap",
+ "jsonc-parser",
+ "once_cell",
+ "path-absolutize",
+ "rustc-hash",
+ "serde",
+ "serde_json",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "normpath"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1758,7 +1778,7 @@ dependencies = [
 name = "rolldown_plugin_node_resolve"
 version = "0.1.0"
 dependencies = [
- "nodejs-resolver",
+ "nodejs-resolver 0.0.67",
  "rolldown_plugin",
 ]
 
@@ -1766,7 +1786,7 @@ dependencies = [
 name = "rolldown_resolver"
 version = "0.0.1"
 dependencies = [
- "nodejs-resolver",
+ "nodejs-resolver 0.0.69",
  "rolldown_error",
  "sugar_path",
 ]

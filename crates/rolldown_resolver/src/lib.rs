@@ -22,7 +22,7 @@ impl Resolver {
           ".tsx".to_string(),
         ],
         // TODO(hyf0): Should we set this as default?
-        prefer_relative: true,
+        prefer_relative: false,
         ..Default::default()
       }),
     }

@@ -99,14 +99,25 @@ function normalizeInput(
   if (input == null) {
     return {}
   } else if (typeof input === 'string') {
-    return {
-      main: input,
+    if (path.isAbsolute(input)) {
+      return {
+        main: input,
+      }
+    } else {
+      return {
+        main: './' + input,
+      }
     }
   } else if (Array.isArray(input)) {
     return Object.fromEntries(
       input.map((src) => {
         const name = path.parse(src).name
-        return [name, src]
+        if (path.isAbsolute(src)) {
+          return [name, src]
+        } else {
+          // TODO: this is temporary workaround
+          return [name, './' + src]
+        }
       }),
     )
   } else {
@@ -182,11 +193,7 @@ export async function normalizeInputOptions(
     plugins: await normalizePlugins(plugins),
     cwd: cwd ?? process.cwd(),
     shimMissingExports: shimMissingExports ?? false,
-    builtins: {
-      nodeResolve: {
-        extensions: ['.js', '.ts', '.tsx', 'jsx'],
-      },
-    },
+    builtins: {},
     preserveSymlinks: preserveSymlinks ?? false,
   }
 }

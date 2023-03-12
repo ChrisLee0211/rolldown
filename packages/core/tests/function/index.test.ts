@@ -44,7 +44,7 @@ async function runSampleTest(sampleConfigPath: string) {
     ...testConfig.options,
   })
   fs.rmSync(distDir, { recursive: true, force: true })
-  await build.write({ dir: distDir, format: 'cjs' })
+  await build.write({ dir: distDir, format: 'esm' })
   const exports = await import(path.join(distDir, 'main.js'))
   await testConfig.exports?.(exports)
 }

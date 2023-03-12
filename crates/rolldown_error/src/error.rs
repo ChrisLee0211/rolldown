@@ -126,10 +126,10 @@ impl Error {
     })
   }
 
-  pub fn unresolved_import(specifier: impl Into<StaticStr>, importer: PathBuf) -> Self {
+  pub fn unresolved_import(specifier: impl Into<StaticStr>, importer: impl Into<PathBuf>) -> Self {
     Self::with_kind(ErrorKind::UnresolvedImport {
       specifier: specifier.into(),
-      importer,
+      importer: importer.into(),
     })
   }
 

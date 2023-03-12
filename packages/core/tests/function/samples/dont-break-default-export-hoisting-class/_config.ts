@@ -3,6 +3,6 @@ import * as t from 'vitest'
 
 export default defineTestConfig({
   exports(exports) {
-    t.expect(exports.file).toBe('foo.js')
+    t.expect(exports.default.file).toBe('foo.js')
   },
 })

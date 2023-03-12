@@ -6,9 +6,9 @@ export default defineTestConfig({
     shimMissingExports: true,
   },
   exports(exports) {
-    t.expect(exports).toEqual({
-      missingDefault: undefined,
-      missingNamed: undefined,
-    })
+    t.expect('missingDefault' in exports).toBe(true)
+    t.expect(exports.missingDefault).toBe(undefined)
+    t.expect('missingNamed' in exports).toBe(true)
+    t.expect(exports.missingNamed).toBe(undefined)
   },
 })
