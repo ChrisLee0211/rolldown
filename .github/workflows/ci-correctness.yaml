@@ -63,7 +63,7 @@ jobs:
             target/
           key: ${{ vars.GITHUB_JOB }}-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
       - name: Cargo clippy
-      - run: cargo clippy --all --all-targets -- -D warnings
+        run: cargo clippy --all --all-targets -- -D warnings
 
   cargo-fmt:
     name: Cargo fmt
