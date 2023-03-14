@@ -43,4 +43,3 @@ This project partially copies code from the following projects:
 - [esbuild(MIT)](https://github.com/evanw/esbuild/blob/0c8a0a901d9a6c7bbff9b4dd347c8a3f65f6c6dd/LICENSE.md)
 
 Licenses are list in [THIRD-PARTY-LICENSE](/THIRD-PARTY-LICENSE)
-
