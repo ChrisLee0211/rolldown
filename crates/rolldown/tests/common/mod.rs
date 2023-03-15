@@ -20,7 +20,7 @@ impl CompiledFixture {
     if self.tester.config.expect_error {
       let mut errors = self.output.unwrap_err().into_vec();
       errors.sort();
-      let snapshot = [format!("---------- ERRORS ----------")]
+      let snapshot = ["---------- ERRORS ----------".to_string()]
         .into_iter()
         .chain(errors.iter().map(|err| {
           format!(
