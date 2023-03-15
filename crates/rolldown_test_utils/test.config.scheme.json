@@ -3,6 +3,10 @@
   "title": "TestConfig",
   "type": "object",
   "properties": {
+    "expectError": {
+      "default": false,
+      "type": "boolean"
+    },
     "expectedError": {
       "anyOf": [
         {

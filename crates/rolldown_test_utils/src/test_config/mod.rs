@@ -24,6 +24,8 @@ pub struct TestConfig {
   #[serde(default)]
   pub output: output_options::OutputOptions,
   pub expected_error: Option<ExpectedError>,
+  #[serde(default)]
+  pub expect_error: bool,
 }
 
 #[derive(Deserialize, JsonSchema)]

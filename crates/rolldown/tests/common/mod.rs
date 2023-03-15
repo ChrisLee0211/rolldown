@@ -16,7 +16,25 @@ pub struct CompiledFixture {
 }
 
 impl CompiledFixture {
-  pub fn output_friendly_to_snapshot(&self) -> String {
+  pub fn output_friendly_to_snapshot(self) -> String {
+    if self.tester.config.expect_error {
+      let mut errors = self.output.unwrap_err().into_vec();
+      errors.sort();
+      let snapshot = [format!("---------- ERRORS ----------")]
+        .into_iter()
+        .chain(errors.iter().map(|err| {
+          format!(
+            "{}: {}",
+            err.kind.code(),
+            err.kind.to_readable_string(&self.fixture_path)
+          )
+        }))
+        .collect::<Vec<_>>()
+        .join("\n");
+
+      return snapshot;
+    }
+
     let mut assets = self.output.as_ref().unwrap().iter().collect::<Vec<_>>();
     assets.sort_by_key(|c| &c.filename);
     assets
