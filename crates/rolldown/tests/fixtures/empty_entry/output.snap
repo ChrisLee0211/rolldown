@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/fixtures/empty_entry
+---
+---------- ERRORS ----------
+PANIC: You must supply options.input to rolldown

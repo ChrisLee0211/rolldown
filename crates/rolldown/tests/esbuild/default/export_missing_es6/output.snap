@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/esbuild/default/export_missing_es6
+---
+---------- ERRORS ----------
+MISSING_EXPORT: "nope" is not exported by "bar.js", imported by "foo.js".

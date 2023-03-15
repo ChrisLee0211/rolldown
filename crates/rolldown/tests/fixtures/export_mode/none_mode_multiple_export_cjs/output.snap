@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/fixtures/export_mode/none_mode_multiple_export_cjs
+---
+---------- ERRORS ----------
+INVALID_EXPORT_OPTION: "none" was specified for "output.exports", but entry module "main.js" has the following exports: "default" and "foo"

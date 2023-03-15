@@ -110,35 +110,7 @@ pub fn run_test(test_config_path: &Path) {
     .unwrap()
     .block_on(crate::common::compile_fixture(test_config_path));
 
-  // If the test config has an expected error, assert that the error matches
-  if let Some(expected_error) = compiled_fx.tester.config.expected_error {
-    let errors = compiled_fx
-      .output
-      .expect_err("Expected error but got success")
-      .into_vec();
-
-    // TODO: should supports multiple errors
-    let error = errors
-      .iter()
-      .find(|error| {
-        error.kind.code() == expected_error.code
-          && error.kind.to_readable_string(&compiled_fx.fixture_path) == expected_error.message
-      })
-      .unwrap_or_else(|| {
-        eprintln!("errors: {errors:#?}");
-        panic!("should find the error");
-      });
-    assert_eq!(error.kind.code(), expected_error.code);
-    assert_eq!(
-      error.kind.to_readable_string(&compiled_fx.fixture_path),
-      expected_error.message
-    );
-    return;
-  }
-
-  // Otherwise, assert that the output matches the snapshot
-
-  // Configure insta to use the test config path as the snapshot path
+  // Configure insta to use the fixture path as the snapshot path
   let fixture_folder = test_config_path.parent().unwrap();
   let mut settings = insta::Settings::clone_current();
   settings.set_snapshot_path(fixture_folder);

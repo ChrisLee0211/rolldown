@@ -51,8 +51,5 @@
       }
     ]
   },
-  "expectedError": {
-    "code": "MISSING_EXPORT",
-    "message": "\"def\" is not exported by \"internal.js\", imported by \"internal-ns-def.js\"."
-  }
+  "expectError": true
 }

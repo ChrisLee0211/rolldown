@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/esbuild/import_star/import_export_star_ambiguous_error
+---
+---------- ERRORS ----------
+MISSING_EXPORT: "y" is not exported by "common.js", imported by "main.js".

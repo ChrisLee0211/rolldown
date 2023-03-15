@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/esbuild/import_star/namespace_import_unused_missing_es6
+---
+---------- ERRORS ----------
+MISSING_EXPORT: "foo" is not exported by "foo.js", imported by "main.js".

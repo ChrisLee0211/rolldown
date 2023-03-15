@@ -1,6 +1,3 @@
 {
-    "expectedError": {
-        "code": "MISSING_EXPORT",
-        "message": "\"y\" is not exported by \"common.js\", imported by \"main.js\"."
-    }
+    "expectError": true
 }

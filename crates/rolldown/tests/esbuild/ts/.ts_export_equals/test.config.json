@@ -7,8 +7,5 @@
       }
     ]
   },
-  "expectedError": {
-    "code": "MISSING_EXPORT",
-    "message": "\"default\" is not exported by \"foo.js\", imported by \"main.ts\"."
-  }
+  "expectError": true
 }

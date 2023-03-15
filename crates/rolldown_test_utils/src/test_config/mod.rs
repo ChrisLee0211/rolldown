@@ -23,7 +23,6 @@ pub struct TestConfig {
   pub input: input_options::InputOptions,
   #[serde(default)]
   pub output: output_options::OutputOptions,
-  pub expected_error: Option<ExpectedError>,
   #[serde(default)]
   pub expect_error: bool,
 }

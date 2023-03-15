@@ -1,0 +1,7 @@
+---
+source: crates/rolldown/tests/common/mod.rs
+expression: compiled_fx.output_friendly_to_snapshot()
+input_file: crates/rolldown/tests/esbuild/import_star/export_import_star_unused
+---
+---------- ERRORS ----------
+MISSING_EXPORT: "def" is not exported by "internal.js", imported by "internal-ns-def.js".

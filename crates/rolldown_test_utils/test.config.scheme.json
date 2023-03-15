@@ -7,16 +7,6 @@
       "default": false,
       "type": "boolean"
     },
-    "expectedError": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ExpectedError"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
     "input": {
       "$ref": "#/definitions/InputOptions"
     },
@@ -31,22 +21,6 @@
       "properties": {
         "tsconfig": {
           "$ref": "#/definitions/TsConfig"
-        }
-      },
-      "additionalProperties": false
-    },
-    "ExpectedError": {
-      "type": "object",
-      "required": [
-        "code",
-        "message"
-      ],
-      "properties": {
-        "code": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
         }
       },
       "additionalProperties": false
