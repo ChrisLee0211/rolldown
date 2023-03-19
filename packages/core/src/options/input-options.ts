@@ -99,25 +99,14 @@ function normalizeInput(
   if (input == null) {
     return {}
   } else if (typeof input === 'string') {
-    if (path.isAbsolute(input)) {
-      return {
-        main: input,
-      }
-    } else {
-      return {
-        main: './' + input,
-      }
+    return {
+      main: input,
     }
   } else if (Array.isArray(input)) {
     return Object.fromEntries(
       input.map((src) => {
         const name = path.parse(src).name
-        if (path.isAbsolute(src)) {
-          return [name, src]
-        } else {
-          // TODO: this is temporary workaround
-          return [name, './' + src]
-        }
+        return [name, src]
       }),
     )
   } else {
