@@ -48,9 +48,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       # We explicitly do this to cache properly.
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
           components: rustfmt, clippy
       - name: Cache cargo
         uses: actions/cache@v3
@@ -61,7 +61,7 @@ jobs:
             ~/.cargo/git/db/
             .cargo-cache
             target/
-          key: ${{ vars.GITHUB_JOB }}-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
+          key: cargo-clippy-${{ env.RUST_TOOLCHAIN }}
       - name: Cargo clippy
         run: cargo clippy --all --all-targets -- -D warnings
 
@@ -71,9 +71,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       # We explicitly do this to cache properly.
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
           components: rustfmt, clippy
       - name: Cache cargo
         uses: actions/cache@v3
@@ -84,7 +84,7 @@ jobs:
             ~/.cargo/git/db/
             .cargo-cache
             target/
-          key: ${{ vars.GITHUB_JOB }}-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
+          key: cargo-fmt-${{ env.RUST_TOOLCHAIN }}
       - name: Cargo fmt
         run: cargo fmt --all -- --check
 
@@ -114,7 +114,7 @@ jobs:
             ~/.cargo/git/db/
             .cargo-cache
             target/
-          key: ${{ vars.GITHUB_JOB }}-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
+          key: cargo-test-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
       - name: Build
         run: |
           cargo test --all --no-run -- --nocapture
@@ -149,7 +149,7 @@ jobs:
             ~/.cargo/git/db/
             .cargo-cache
             target/
-          key: ${{ vars.GITHUB_JOB }}-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
+          key: node-test-${{ runner.os }}-${{ env.RUST_TOOLCHAIN }}
       - name: Setup node
         uses: actions/setup-node@v3
         with:
@@ -159,7 +159,7 @@ jobs:
         run: yarn install
       - name: Build
         run: |
-          yarn build:packages
+          yarn build
       - name: Test
         run: |
           yarn test

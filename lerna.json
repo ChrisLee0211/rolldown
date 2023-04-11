@@ -1,0 +1,11 @@
+{
+  "packages": [
+    "crates/rolldown_node_binding",
+    "packages/*",
+    "packages/core/tests"
+  ],
+  "version": "independent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "message": "chore: publish"
+}

@@ -1,6 +1,6 @@
 {
   "name": "rolldown",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Rollup in Rust",
   "main": "index.js",
   "private": true,
@@ -10,11 +10,13 @@
     "packages/core/tests"
   ],
   "scripts": {
-    "build": "run-s build:packages build:ts ",
+    "build": "run-s build:packages build:ts",
+    "build:ci:release": "run-s build:packages:ci build:ts build:binding:release",
     "build:ts": "tsc -b tsconfig.project.json",
     "build:binding": "yarn workspace @rolldown/node-binding run build",
     "build:binding:release": "yarn workspace @rolldown/node-binding run build:release",
-    "build:packages": "yarn workspaces foreach --topological --exclude rolldown run build",
+    "build:packages": "yarn workspaces foreach --exclude rolldown --topological run build",
+    "build:packages:ci": "yarn workspaces foreach --exclude rolldown --exclude @rolldown/node-binding --exclude @rolldown/core --topological run build",
     "format": "run-p format:prettier format:rs format:toml",
     "format:prettier": "prettier . -w",
     "format:check": "run-p format:prettier:check format:toml:check",

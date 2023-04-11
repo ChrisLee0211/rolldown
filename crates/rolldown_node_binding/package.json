@@ -1,9 +1,9 @@
 {
   "name": "@rolldown/node-binding",
-  "version": "1.0.0",
-  "description": "Template project for writing node package with napi-rs",
+  "version": "0.0.0",
+  "description": "Fast JavaScript/TypeScript bundler in Rust with Rollup-compatible API. ",
   "main": "index.js",
-  "repository": "git@github.com:napi-rs/package-template.git",
+  "repository": "git@github.com:rolldown-rs/rolldown.git",
   "license": "MIT",
   "keywords": [
     "napi-rs",
@@ -11,14 +11,19 @@
     "N-API",
     "Rust",
     "node-addon",
-    "node-addon-api"
+    "node-addon-api",
+    "rollup",
+    "rolldown",
+    "bundler",
+    "swc",
+    "esbuild"
   ],
   "files": [
     "index.d.ts",
     "index.js"
   ],
   "napi": {
-    "name": "package-template",
+    "name": "rolldown",
     "triples": {
       "defaults": true,
       "additional": [
@@ -45,12 +50,8 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "bench": "node -r @swc-node/register benchmark/bench.ts",
-    "build:release": "napi build --platform --cargo-name rolldown_node_binding --cargo-cwd ../.. --release --pipe \"prettier -w\"",
     "build": "napi build --platform --cargo-name rolldown_node_binding --cargo-cwd ../.. --pipe \"prettier -w\"",
-    "format": "run-p format:prettier format:rs",
-    "format:prettier": "prettier . -w",
-    "format:rs": "cargo fmt",
-    "lint": "eslint . -c ./.eslintrc.yml",
+    "build:release": "napi build --platform --cargo-name rolldown_node_binding --cargo-cwd ../.. --release --pipe \"prettier -w\"",
     "prepublishOnly": "napi prepublish -t npm",
     "version": "napi version"
   },
@@ -72,34 +73,5 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.1",
     "typescript": "^4.9.4"
-  },
-  "lint-staged": {
-    "*.@(js|ts|tsx)": [
-      "eslint -c .eslintrc.yml --fix"
-    ],
-    "*.@(js|ts|tsx|yml|yaml|md|json)": [
-      "prettier --write"
-    ]
-  },
-  "ava": {
-    "require": [
-      "@swc-node/register"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "timeout": "2m",
-    "workerThreads": false,
-    "environmentVariables": {
-      "TS_NODE_PROJECT": "./tsconfig.json"
-    }
-  },
-  "prettier": {
-    "printWidth": 120,
-    "semi": false,
-    "trailingComma": "all",
-    "singleQuote": true,
-    "arrowParens": "always"
-  },
-  "packageManager": "yarn@3.3.0"
+  }
 }

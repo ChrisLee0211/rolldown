@@ -1,3 +1,3 @@
-const rolldown = require('@rolldown/core')
+const rolldown = require('../../core/dist/index.js')
 
 module.exports.rollup = rolldown.rolldown
