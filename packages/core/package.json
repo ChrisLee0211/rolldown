@@ -1,6 +1,6 @@
 {
   "name": "@rolldown/core",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "description": "rolldown core binding",
   "main": "./dist/index.js",
   "module": "./lib/index.mjs",

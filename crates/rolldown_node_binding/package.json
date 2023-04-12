@@ -52,7 +52,7 @@
     "bench": "node -r @swc-node/register benchmark/bench.ts",
     "build": "napi build --platform --cargo-name rolldown_node_binding --cargo-cwd ../.. --pipe \"prettier -w\"",
     "build:release": "napi build --platform --cargo-name rolldown_node_binding --cargo-cwd ../.. --release --pipe \"prettier -w\"",
-    "prepublishOnly": "napi prepublish -t npm",
+    "prepublishOnly": "napi prepublish -t lerna",
     "version": "napi version"
   },
   "devDependencies": {
