@@ -1,7 +1,7 @@
 {
   "name": "@rolldown/node-binding",
   "version": "0.0.1",
-  "description": "Fast JavaScript/TypeScript bundler in Rust with Rollup-compatible API. ",
+  "description": "Fast JavaScript/TypeScript bundler in Rust with Rollup-compatible API.",
   "main": "index.js",
   "repository": "git@github.com:rolldown-rs/rolldown.git",
   "license": "MIT",

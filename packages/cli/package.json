@@ -9,6 +9,10 @@
   "bin": {
     "rolldown": "./dist/index.js"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "license": "MIT",
   "devDependencies": {
     "clipanion": "^3.2.0",
