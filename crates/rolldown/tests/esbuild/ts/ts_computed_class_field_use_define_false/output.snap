@@ -5,12 +5,12 @@ input_file: crates/rolldown/tests/esbuild/ts/ts_computed_class_field_use_define_
 ---
 ---------- main.js ----------
 // main.ts
-function _arrayLikeToArray(arr, len) {
+function _array_like_to_array(arr, len) {
     (null == len || len > arr.length) && (len = arr.length);
     for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
     return arr2;
 }
-function _arrayWithHoles(arr) {
+function _array_with_holes(arr) {
     if (Array.isArray(arr)) return arr;
 }
 function _decorate(decorators, factory, superClass) {
@@ -22,7 +22,7 @@ function _decorate(decorators, factory, superClass) {
     return _runClassFinishers(r.F, decorated.finishers);
 }
 function _createElementDescriptor(def) {
-    var key = _toPropertyKey(def.key);
+    var key = _to_property_key(def.key);
     var descriptor;
     if ("method" === def.kind) {
         descriptor = {
@@ -32,7 +32,7 @@ function _createElementDescriptor(def) {
             enumerable: false
         };
         Object.defineProperty(def.value, "name", {
-            value: "symbol" === _typeof(key) ? "" : key,
+            value: "symbol" === _type_of(key) ? "" : key,
             configurable: true
         });
     } else "get" === def.kind ? descriptor = {
@@ -216,7 +216,7 @@ function _fromElementDescriptor(element) {
 }
 function _toElementDescriptors(elementObjects) {
     if (void 0 === elementObjects) return;
-    return _toArray(elementObjects).map(function(elementObject) {
+    return _to_array(elementObjects).map(function(elementObject) {
         var element = _toElementDescriptor(elementObject);
         _disallowProperty(elementObject, "finisher", "An element descriptor");
         _disallowProperty(elementObject, "extras", "An element descriptor");
@@ -225,10 +225,10 @@ function _toElementDescriptors(elementObjects) {
 }
 function _toElementDescriptor(elementObject) {
     var kind = String(elementObject.kind);
-    if ("method" !== kind && "field" !== kind) throw new TypeError('An element descriptor\'s .kind property must be either "method" or "field", but a decorator created an element descriptor with .kind "' + kind + '"');
-    var key = _toPropertyKey(elementObject.key);
+    if ("method" !== kind && "field" !== kind) throw new TypeError('An element descriptor\'s .kind property must be either "method" or "field", but a decorator created an element descriptor with .kind "' + kind + "\"");
+    var key = _to_property_key(elementObject.key);
     var placement = String(elementObject.placement);
-    if ("static" !== placement && "prototype" !== placement && "own" !== placement) throw new TypeError('An element descriptor\'s .placement property must be one of "static", "prototype" or "own", but a decorator created an element descriptor with .placement "' + placement + '"');
+    if ("static" !== placement && "prototype" !== placement && "own" !== placement) throw new TypeError('An element descriptor\'s .placement property must be one of "static", "prototype" or "own", but a decorator created an element descriptor with .placement "' + placement + "\"");
     var descriptor = elementObject.descriptor;
     _disallowProperty(elementObject, "elements", "An element descriptor");
     var element = {
@@ -270,7 +270,7 @@ function _fromClassDescriptor(elements) {
 }
 function _toClassDescriptor(obj) {
     var kind = String(obj.kind);
-    if ("class" !== kind) throw new TypeError('A class descriptor\'s .kind property must be "class", but a decorator created a class descriptor with .kind "' + kind + '"');
+    if ("class" !== kind) throw new TypeError('A class descriptor\'s .kind property must be "class", but a decorator created a class descriptor with .kind "' + kind + "\"");
     _disallowProperty(obj, "key", "A class descriptor");
     _disallowProperty(obj, "placement", "A class descriptor");
     _disallowProperty(obj, "descriptor", "A class descriptor");
@@ -301,39 +301,39 @@ function _runClassFinishers(constructor, finishers) {
     }
     return constructor;
 }
-function _iterableToArray(iter) {
+function _iterable_to_array(iter) {
     if ("undefined" != typeof Symbol && null != iter[Symbol.iterator] || null != iter["@@iterator"]) return Array.from(iter);
 }
-function _nonIterableRest() {
+function _non_iterable_rest() {
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _toArray(arr) {
-    return _arrayWithHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableRest();
+function _to_array(arr) {
+    return _array_with_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) || _non_iterable_rest();
 }
-function _toPrimitive(input, hint) {
-    if ("object" !== _typeof(input) || null === input) return input;
+function _to_primitive(input, hint) {
+    if ("object" !== _type_of(input) || null === input) return input;
     var prim = input[Symbol.toPrimitive];
     if (void 0 !== prim) {
         var res = prim.call(input, hint || "default");
-        if ("object" !== _typeof(res)) return res;
+        if ("object" !== _type_of(res)) return res;
         throw new TypeError("@@toPrimitive must return a primitive value.");
     }
     return ("string" === hint ? String : Number)(input);
 }
-function _toPropertyKey(arg) {
-    var key = _toPrimitive(arg, "string");
-    return "symbol" === _typeof(key) ? key : String(key);
+function _to_property_key(arg) {
+    var key = _to_primitive(arg, "string");
+    return "symbol" === _type_of(key) ? key : String(key);
 }
-var _typeof = function(obj) {
+function _type_of(obj) {
     return obj && "undefined" != typeof Symbol && obj.constructor === Symbol ? "symbol" : typeof obj;
-};
-function _unsupportedIterableToArray(o, minLen) {
+}
+function _unsupported_iterable_to_array(o, minLen) {
     if (!o) return;
-    if ("string" == typeof o) return _arrayLikeToArray(o, minLen);
+    if ("string" == typeof o) return _array_like_to_array(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     "Object" === n && o.constructor && (n = o.constructor.name);
     if ("Map" === n || "Set" === n) return Array.from(n);
-    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o, minLen);
 }
 let Foo = _decorate([], function(_initialize) {
     class Foo$1 {

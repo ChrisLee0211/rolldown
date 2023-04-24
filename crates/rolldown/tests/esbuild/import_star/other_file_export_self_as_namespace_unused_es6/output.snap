@@ -1,9 +1,18 @@
 ---
-source: crates/rolldown_core/tests/common/mod.rs
+source: crates/rolldown/tests/common/mod.rs
 expression: compiled_fx.output_friendly_to_snapshot()
-input_file: crates/rolldown_core/tests/esbuild/import_star/other_file_export_self_as_namespace_unused_es6
+input_file: crates/rolldown/tests/esbuild/import_star/other_file_export_self_as_namespace_unused_es6
 ---
 ---------- main.js ----------
 // foo.js
 const foo = 123;
+var * = Object.freeze({
+    __proto__: null,
+    get foo () {
+        return foo;
+    },
+    get ns () {
+        return *;
+    }
+});
 export { foo };

@@ -1,7 +1,7 @@
 ---
-source: crates/rolldown_core/tests/common/mod.rs
+source: crates/rolldown/tests/common/mod.rs
 expression: compiled_fx.output_friendly_to_snapshot()
-input_file: crates/rolldown_core/tests/esbuild/import_star/re_export_star_as_external_common_js
+input_file: crates/rolldown/tests/esbuild/import_star/re_export_star_as_external_common_js
 ---
 ---------- main.js ----------
 "use strict";
@@ -13,11 +13,11 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
-    if (obj === null || (typeof obj !== "object" && typeof obj !== "function")) {
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
         return {
             default: obj
         };
@@ -53,4 +53,4 @@ Object.defineProperty(exports, "out", {
         return _foo;
     }
 });
-var _foo = _interopRequireWildcard(require("foo"));
+var _foo = _interop_require_wildcard(require("foo"));

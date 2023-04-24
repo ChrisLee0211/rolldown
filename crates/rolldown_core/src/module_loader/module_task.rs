@@ -300,7 +300,8 @@ fn parse_to_js_ast(
               react::Options {
                 ..Default::default()
               },
-              top_level_mark
+              top_level_mark,
+              unresolved_mark,
             )
           },
           Optional {
