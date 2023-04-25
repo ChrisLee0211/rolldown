@@ -1,7 +1,7 @@
 ---
-source: crates/rolldown_core/tests/common/mod.rs
+source: crates/rolldown/tests/common/mod.rs
 expression: compiled_fx.output_friendly_to_snapshot()
-input_file: crates/rolldown_core/tests/fixtures/export_mode/default_mode_multiple_export_in_dep_chunk_cjs
+input_file: crates/rolldown/tests/fixtures/export_mode/default_mode_multiple_export_in_dep_chunk_cjs
 ---
 ---------- foo.js ----------
 // foo.js
@@ -36,11 +36,11 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
-    if (obj === null || (typeof obj !== "object" && typeof obj !== "function")) {
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
         return {
             default: obj
         };
@@ -77,7 +77,7 @@ Object.defineProperty(exports, "default", {
     }
 });
 Promise.resolve().then(function() {
-    return _interopRequireWildcard(require("./foo.js"));
+    return _interop_require_wildcard(require("./foo.js"));
 });
 var main = 'hello, world';
 module.exports = exports.default;
